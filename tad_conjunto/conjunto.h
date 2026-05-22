@@ -3,7 +3,7 @@
 class Conjunto{
 
 private:
-    int tamanho;
+    int capacidade;
     int* elementos;
     int quant_elementos;
 
@@ -17,3 +17,4 @@ public:
     void print();
     void redimensionar();
 };
+

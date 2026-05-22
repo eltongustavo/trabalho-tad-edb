@@ -9,10 +9,44 @@ int Sequencia::getQuantidade(){
     return quantidade;
 }
 
+void Sequencia::get(int pos){
+    if(pos <= 0 || pos > quantidade){
+    std::cout << std::endl << "Posição Inválida!" << std::endl;
+    } else {
+        No* atual = inicio;
+        int aux = 1;
+        while(aux < pos) {
+            atual = atual->getProximo();
+            aux++;
+        }
+        std::cout << std::endl << "Elemento " << pos << ": " << atual->getValor() << std::endl;
+    }
+}
+
+void Sequencia::print(){
+
+    std::cout << std::endl << "(PRINT)" << std::endl;
+    std::cout << "Sequência: ";
+
+    if (inicio == nullptr || quantidade == 0) {
+        std::cout << "Lista vazia!";
+    }
+
+    No* atual = inicio;
+
+    while (atual != nullptr) {
+        std::cout << atual->getValor() << " ";
+        atual = atual->getProximo();
+    }
+
+    std::cout << std::endl;
+    std::cout << "quantidade: " << quantidade << std::endl << std::endl;
+}
+
 bool Sequencia::insert(int pos, int elem){
     if(quantidade == 0){
         if(pos != 1){
-            std::cout << std::endl << "A lista está vazia, por favor adicione um elemento na posição 1" << std::endl;
+            std::cout << std::endl << "A lista está vazia, adicione um elemento na posição 1" << std::endl;
             return false;
         }
         No* no = new No(elem, nullptr);
@@ -54,7 +88,7 @@ bool Sequencia::insert(int pos, int elem){
                 no->setProximo(atual->getProximo());
                 atual->setProximo(no);
 
-                std::cout << std::endl << no->getValor() << " adicionado com sucesso na posição " << aux+1 << std::endl;
+                std::cout << std::endl << no->getValor() << " adicionado na posição " << aux+1 << std::endl;
             
                 quantidade++;
             }
@@ -100,37 +134,5 @@ bool Sequencia::remove(int pos){
 
 }
 
-void Sequencia::get(int pos){
-    if(pos <= 0 || pos > quantidade){
-    std::cout << std::endl << "Posição Inválida!" << std::endl;
-    } else {
-        No* atual = inicio;
-        int aux = 1;
-        while(aux < pos) {
-            atual = atual->getProximo();
-            aux++;
-        }
-        std::cout << std::endl << "Elemento " << pos << ": " << atual->getValor() << std::endl;
-    }
-}
 
-void Sequencia::print(){
-
-    std::cout << std::endl << "(PRINT)" << std::endl;
-    std::cout << "Sequência: ";
-
-    if (inicio == nullptr || quantidade == 0) {
-        std::cout << "Lista vazia!";
-    }
-
-    No* atual = inicio;
-
-    while (atual != nullptr) {
-        std::cout << atual->getValor() << " ";
-        atual = atual->getProximo();
-    }
-
-    std::cout << std::endl;
-    std::cout << "quantidade: " << quantidade << std::endl << std::endl;
-}
 

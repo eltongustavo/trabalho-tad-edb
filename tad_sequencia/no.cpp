@@ -1,4 +1,3 @@
-#include <iostream>
 #include "no.h"
 
 No::No(int v, No* no){
@@ -17,3 +16,4 @@ No* No::getProximo(){
 void No::setProximo(No* no){
     proximo = no;
 }
+

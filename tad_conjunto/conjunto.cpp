@@ -2,8 +2,8 @@
 #include "conjunto.h"
 
 Conjunto::Conjunto(){
-    tamanho = 5;
-    elementos = new int[tamanho];
+    capacidade = 3;
+    elementos = new int[capacidade];
     quant_elementos = 0;
 }
 
@@ -16,33 +16,9 @@ bool Conjunto::contains(int elem){
     return false;
 }
 
-void Conjunto::add(int elem){
-    if(quant_elementos == tamanho){
-        redimensionar();
-    }
-
-    if(contains(elem) == false){
-        elementos[quant_elementos] = elem;
-        quant_elementos++;
-    }
-
-}
-
-void Conjunto::remove(int elem){
-    for (int i = 0; i < quant_elementos; i++){
-        if(elem == elementos[i]){
-            int aux = elementos[quant_elementos-1];
-            elementos[quant_elementos-1] = elem;
-            elementos[i] = aux;
-        }
-    }
-
-    quant_elementos--;
-}
-
 void Conjunto::redimensionar(){
-    tamanho*=2;
-    int* novos_elementos = new int[tamanho];
+    capacidade*=2;
+    int* novos_elementos = new int[capacidade];
 
     for (int i = 0; i < quant_elementos; i++){
         novos_elementos[i] = elementos[i];
@@ -62,6 +38,31 @@ void Conjunto::print(){
         }
     }
     std::cout << "}" << std::endl;
+}
+
+void Conjunto::add(int elem){
+    if(quant_elementos == capacidade){
+        redimensionar();
+    }
+
+    if(contains(elem) == false){
+        elementos[quant_elementos] = elem;
+        quant_elementos++;
+    }
+
+}
+
+void Conjunto::remove(int elem){
+    if(contains(elem) == true){
+        for (int i = 0; i < quant_elementos; i++){
+            if(elem == elementos[i]){
+                int aux = elementos[quant_elementos-1];
+                elementos[quant_elementos-1] = elem;
+                elementos[i] = aux;
+            }
+        }
+    quant_elementos--;
+    }
 }
 
 Conjunto Conjunto::sets_union(Conjunto a, Conjunto b){
