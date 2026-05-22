@@ -15,7 +15,8 @@ int main() {
         std::cout << "1. insert(pos, elem) | ";
         std::cout << "2. remover(pos) | ";
         std::cout << "3. get(pos) | ";
-        std::cout << "4. encerrar sistema" << std::endl;
+        std::cout << "4. teste mínimo sugerido | ";
+        std::cout << "5. encerrar sistema" << std::endl;
 
         s.print();
 
@@ -59,9 +60,22 @@ int main() {
                 break;
 
             case 4:
+                for (int i = 0; i <= 10; i++){
+                    s.insert(i, i*2);
+                }
+
+                s.print();
+                
+                s.remove(5);
+                s.remove(6);
+
+                s.print();
+                break;
+
+            case 5:
                 loop = false;
                 break;
-            
+
             default:
                 std::cout << std::endl << "Opção Inválida!" << std::endl;
                 break;
