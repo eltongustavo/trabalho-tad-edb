@@ -75,35 +75,29 @@ void ArraySequence::remove(int pos){
         return;
     }
 
-    if(pos == 1){
+    if(pos == tamanho){
+        tamanho--;
+    } else {
         for (; pos < tamanho; pos++){
             array[pos - 1] = array[pos];
-        }
-        tamanho--;
-    }else if (pos == tamanho){
-        tamanho--;
-    }else{
-        for (; pos < tamanho; pos++){
-            array[pos-1] = array[pos];
         }
         tamanho--;
     }
 }
 
 void ArraySequence::insert(int pos, int value){
-    
     if(pos <= 0 || pos > tamanho + 1){
         std::cout << std::endl << pos << " é uma posição inválida!" << std::endl;
         return;
     }
-
+    
     if(tamanho == capacidade){
         redimensionar();
     }
 
     if(pos == 1){
         pushFront(value);
-    } else if(pos == tamanho + 1) {
+    } else if (pos == tamanho + 1) {
         pushBack(value);
     } else {
         for (int i = tamanho; i > pos-1; i--){
@@ -112,5 +106,5 @@ void ArraySequence::insert(int pos, int value){
         array[pos - 1] = value;
         tamanho++;
     }
-    
 }
+
